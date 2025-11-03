@@ -1,5 +1,5 @@
 #!/bin/bash
-# run_dashboard.sh — start local HTTP server and open the dashboard
+# run_dashboard.sh — start local HTTP server and display the dashboard link
 
 # Define the base directory
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -23,20 +23,15 @@ python3 -m http.server $PORT >/dev/null 2>&1 &
 # Give it a moment to start
 sleep 1
 
-# Construct URL
+# Display link
 URL="http://localhost:${PORT}/${HTML_PATH}"
-echo "Opening: $URL"
+echo ""
+echo "Dashboard server is running."
+echo "Click or copy this link into your browser:"
+echo ""
+echo "  ${URL}"
+echo ""
+echo "Press Ctrl+C in this terminal to stop the server."
 
-# Cross-platform open logic
-if command -v open >/dev/null 2>&1; then
-  open "$URL"            # macOS
-elif command -v xdg-open >/dev/null 2>&1; then
-  xdg-open "$URL"        # Linux (desktop)
-else
-  echo "Please open this URL manually in your browser:"
-  echo "$URL"
-fi
-
-echo "Server running. Press Ctrl+C in this terminal to stop."
 wait
 
