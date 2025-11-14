@@ -1,6 +1,5 @@
 # ============================================================
 # Frutiger Aero — Text, Image, and Trend Analysis Environment
-# (with optional Ultralytics YOLOv8 support)
 # ============================================================
 
 FROM rocker/rstudio:latest
@@ -33,6 +32,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ------------------------------------------------------------
+# Python dependencies for 3D color plotting
+# ------------------------------------------------------------
+RUN pip3 install --break-system-packages numpy scipy plotly
+
+# ------------------------------------------------------------
 # R packages for text mining, visualization, and trends
 # ------------------------------------------------------------
 RUN set -eux; \
@@ -62,17 +66,6 @@ RUN echo 'cd /home/rstudio/project' >> /home/rstudio/.bashrc \
  && chown rstudio:rstudio /home/rstudio/.bashrc
 
 
-# ------------------------------------------------------------
-# Ultralytics YOLOv8 (Python AI for object detection)
-# ------------------------------------------------------------
-RUN pip install --no-cache-dir ultralytics pillow
-
-# Prepare directory for later Python scripts or images
-RUN mkdir -p /home/rstudio/project/images
-
-# Prevent Ultralytics setup prompts
-ENV ULTRALYTICS_CONFIG_DIR=/root/.config/ultralytics
-
 
 # ------------------------------------------------------------
 # Usage
@@ -80,7 +73,7 @@ ENV ULTRALYTICS_CONFIG_DIR=/root/.config/ultralytics
 # Build the image (single unified tag):
 #   docker build -t aero .
 #
-# Run RStudio + YOLOv8:
+# Run RStudio:
 #   docker run --rm -e PASSWORD=mysecret -p 8997:8787 \
 #     -v "$(pwd)":/home/rstudio/project aero
 #
