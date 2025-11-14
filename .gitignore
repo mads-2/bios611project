@@ -53,16 +53,25 @@ __pycache__/
 *.swp
 *.swo
 
-# Node/npm (in case of dashboard JS)
+# ----------------------------
+# Node / npm (dashboard JS)
+# ----------------------------
 node_modules/
 npm-debug.log
 yarn-error.log
 
 # ----------------------------
-# Color generation outputs
+# Color + Object Generation Outputs (FA_* only)
 # ----------------------------
+# Colors (main + numbered variants)
 images/FA_*/colors.txt
-images/FA_*/*color.txt
+images/FA_*/*colors.txt
+
+# Vision API object detection outputs
+images/FA_*/*objects.txt
+
+# 3D Color Plot (Plotly)
+dashboard/color_plot_output.html
 
 # ----------------------------
 # Reports and derived data
@@ -74,7 +83,7 @@ reports/color_summary.txt
 reports/*.md
 
 # ----------------------------
-# Dashboard and local server files
+# Dashboard and frontend build files
 # ----------------------------
 dashboard/__pycache__/
 dashboard/.env
@@ -113,4 +122,8 @@ logs/
 *.Rproj
 *.Rproj.user
 
+# ----------------------------
+# Large model files
+# ----------------------------
 models/*.pth
+
