@@ -1,0 +1,86 @@
+# Object label	TotalScore	Count
+Technology	21.582	25
+Graphic Design	20.017	30
+Blue	12.857	13
+Green	11.749	12
+Night	10.251	14
+Fractal Art	7.595	12
+Electronic Device	6.428	7
+Operating System	5.567	8
+Software	5.155	7
+Science	5.089	9
+Video Game Software	4.784	7
+Gadget	4.772	6
+Sphere	4.724	7
+Astronomical Object	4.095	5
+Multimedia	4.086	6
+Lens Flare	3.739	6
+Computer	2.962	4
+Neon	2.677	4
+Planet	2.509	3
+Game Controller	2.419	3
+Multimedia Software	2.210	3
+Personal Computer	2.098	3
+Joystick	1.715	2
+High-Rise Building	1.705	2
+Metropolis	1.692	2
+Skyscraper	1.684	2
+Purple	1.619	2
+Tower	1.618	2
+Globe	1.438	2
+Animation	1.429	2
+Fictional Character	1.428	2
+Display Device	1.397	2
+Icon	1.257	2
+Electronics	1.164	2
+Laser	1.162	2
+Visual Effect Lighting	1.072	2
+Moon	0.989	1
+Audio Equipment	0.984	1
+Nature	0.976	1
+City	0.954	1
+Fluid	0.953	1
+Full Moon	0.932	1
+Event	0.926	1
+Moonlight	0.926	1
+Star	0.926	1
+Metropolitan Area	0.925	1
+Headphones	0.922	1
+Liquid	0.920	1
+Mobile Phone	0.895	1
+Darkness	0.884	1
+Telephony	0.881	1
+Produce	0.880	1
+Commercial Building	0.866	1
+Celestial Event	0.857	1
+Feature Phone	0.852	1
+Communication Device	0.842	1
+Remote Control	0.839	1
+Drop	0.831	1
+Input Device	0.826	1
+Portable Communications Device	0.826	1
+Headset	0.814	1
+Midnight	0.796	1
+Fruit	0.793	1
+Cityscape	0.790	1
+Skyline	0.790	1
+Earth	0.779	1
+Game	0.775	1
+Loudspeaker	0.761	1
+Bubble	0.756	1
+Silver	0.748	1
+Glass	0.740	1
+Natural Foods	0.730	1
+Peripheral	0.717	1
+Mobile Device	0.713	1
+Granny Smith	0.710	1
+Plastic	0.677	1
+Dishware	0.669	1
+Apple	0.656	1
+Serveware	0.633	1
+Mask	0.602	1
+Compact Disc	0.599	1
+Constellation	0.596	1
+Vortex	0.585	1
+Wallpaper	0.567	1
+Aurora	0.525	1

@@ -1,0 +1,72 @@
+# Object label	TotalScore	Count
+Orange	34.391	36
+Graphic Design	17.351	27
+Yellow	14.494	15
+Technology	10.365	12
+Electronic Device	7.722	8
+Gadget	6.848	8
+Red	6.836	7
+Interior Design	4.671	5
+Ceiling	4.622	5
+Electronics	4.567	6
+Display Device	4.367	5
+Flooring	2.862	3
+Floor	2.788	3
+Heat	2.473	4
+Animation	2.092	3
+Communication Device	1.927	2
+Telephony	1.862	2
+Mobile Phone	1.846	2
+Portable Communications Device	1.779	2
+Lens Flare	1.681	3
+Software	1.681	2
+Mobile Device	1.673	2
+Machine	1.661	2
+Input Device	1.504	2
+Peripheral	1.437	2
+Watch	1.437	2
+Computer Hardware	1.398	2
+Wire	1.283	2
+Hall	1.233	2
+Light Fixture	1.230	2
+Tile	1.218	2
+Cleanliness	1.123	2
+Fruit	0.976	1
+Produce	0.947	1
+Petal	0.895	1
+Natural Foods	0.889	1
+Telephone	0.878	1
+Office Equipment	0.871	1
+Sphere	0.862	1
+Electrical Cable	0.816	1
+Apple	0.806	1
+Number	0.800	1
+Personal Computer	0.784	1
+Operating System	0.763	1
+Multimedia	0.751	1
+Advertising	0.749	1
+Spire	0.747	1
+Food	0.739	1
+Multimedia Software	0.722	1
+Icon	0.663	1
+Computer Program	0.658	1
+Measuring Instrument	0.655	1
+Animated Cartoon	0.626	1
+Astronomical Object	0.626	1
+Exhibition	0.615	1
+Plastic	0.600	1
+Happiness	0.589	1
+Home Appliance	0.571	1
+Daisy Family	0.570	1
+Lobby	0.567	1
+Portable Electronic Game	0.565	1
+Apples	0.554	1
+Citrus	0.552	1
+Performing Arts	0.550	1
+Sun	0.539	1
+Modern Art	0.537	1
+Seedless Fruit	0.535	1
+Clock	0.532	1
+Sunrise	0.528	1
+Cd Player	0.515	1
+Triangle	0.514	1

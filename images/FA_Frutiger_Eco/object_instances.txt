@@ -1,0 +1,153 @@
+# Object label	TotalScore	Count
+Sphere	14.953	21
+Earth	14.879	19
+Graphic Design	14.765	24
+Science	14.736	26
+Globe	13.071	18
+Planet	10.484	14
+Green	9.805	10
+Meteorological Phenomenon	9.378	13
+Cumulus	9.220	12
+Cloud	8.507	9
+Agriculture	7.414	12
+Technology	6.120	7
+Wind	5.975	9
+Blue	5.930	6
+Garden	5.641	7
+Astronomical Object	5.326	8
+Meadow	4.923	6
+Nature	4.877	5
+Display Device	4.365	5
+Wind Turbine	4.343	5
+Wind Farm	4.190	5
+Field	3.951	5
+Electronic Device	3.917	4
+Liquid	3.676	4
+Skyscraper	3.055	4
+Lawn	3.019	4
+Furniture	2.839	3
+Drop	2.700	4
+Animation	2.689	4
+Tower	2.645	3
+Computer Monitor	2.607	3
+Windmill	2.600	3
+High-Rise Building	2.541	3
+Tourist Attraction	2.483	3
+Plastic	2.167	3
+Plantation	2.148	4
+Solar Panel	1.944	2
+Solar Energy	1.924	2
+Interior Design	1.918	2
+Solar Power	1.908	2
+Fluid	1.905	2
+Office Equipment	1.876	2
+Desktop Computer	1.874	2
+Peripheral	1.860	2
+Ceiling	1.763	2
+Turbine	1.639	2
+Machine	1.638	2
+Map	1.568	2
+Cityscape	1.506	2
+Shelf	1.460	2
+Shelving	1.458	2
+Landscaping	1.419	2
+Bubble	1.295	2
+Tropics	1.090	2
+Botanical Garden	1.084	2
+Gadget	0.989	1
+Daytime	0.981	1
+Water	0.981	1
+Communication Device	0.978	1
+Wall	0.976	1
+Mobile Phone	0.972	1
+Portable Communications Device	0.972	1
+Telephony	0.971	1
+Plants	0.967	1
+Mobile Device	0.963	1
+Natural Landscape	0.956	1
+Cone	0.946	1
+Grassland	0.940	1
+Finger	0.938	1
+Summer	0.936	1
+Pharmaceutical Drug	0.929	1
+Personal Computer	0.924	1
+Lighting	0.921	1
+Landmark	0.916	1
+Flooring	0.912	1
+Telephone	0.903	1
+Floor	0.901	1
+Metropolis	0.896	1
+Computer	0.892	1
+Medicine	0.879	1
+Computer Hardware	0.877	1
+Pyramid	0.873	1
+Moisture	0.865	1
+Prescription Drug	0.856	1
+Room	0.855	1
+Dew	0.844	1
+Observation Tower	0.842	1
+Pill	0.842	1
+Glass	0.840	1
+Sunlight	0.824	1
+Gesture	0.823	1
+Pasture	0.822	1
+Thumb	0.822	1
+Woody Plant	0.822	1
+Bracelet	0.812	1
+Ocean	0.811	1
+Triangle	0.801	1
+Reflection	0.790	1
+Commercial Building	0.787	1
+Island	0.782	1
+Skyline	0.782	1
+Condominium	0.778	1
+Television Set	0.761	1
+Engineering	0.748	1
+Home Appliance	0.743	1
+Sun	0.742	1
+Household Supply	0.736	1
+Advertising	0.727	1
+Coral Reef Fish	0.722	1
+Prairie	0.722	1
+Herbaceous Plant	0.715	1
+Output Device	0.714	1
+Electronics	0.713	1
+Fish	0.707	1
+Chair	0.703	1
+Multimedia	0.696	1
+Body Jewelry	0.691	1
+Atlas	0.687	1
+Laundry Detergent	0.685	1
+Natural Material	0.684	1
+Artificial Island	0.677	1
+Health Care	0.674	1
+Intersection	0.650	1
+Daylighting	0.645	1
+Medical	0.632	1
+Analgesic	0.628	1
+Nail	0.627	1
+Macro Photography	0.625	1
+Personal Care	0.620	1
+Marine Biology	0.614	1
+Transparency	0.613	1
+Wristband	0.609	1
+Laundry Supply	0.606	1
+Precipitation	0.600	1
+Cleanliness	0.598	1
+Watch	0.595	1
+Evergreen	0.593	1
+Household Cleaning Supply	0.586	1
+Headquarters	0.570	1
+Publication	0.569	1
+Bird	0.564	1
+Solvent In Chemical Reactions	0.560	1
+Green Algae	0.553	1
+Retail	0.552	1
+Farm	0.551	1
+Nutraceutical	0.542	1
+Jewelry Making	0.522	1
+Flight	0.521	1
+Stimulant	0.517	1
+Gemstone	0.506	1
+List Of Peninsulas	0.502	1
+Stock Photography	0.500	1

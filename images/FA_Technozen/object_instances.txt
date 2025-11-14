@@ -1,0 +1,169 @@
+# Object label	TotalScore	Count
+Interior Design	18.193	19
+Flooring	17.160	18
+Floor	15.969	17
+Furniture	15.416	16
+Electronic Device	9.468	10
+Ceiling	8.820	10
+Chair	8.571	11
+Living Room	8.494	10
+Room	7.940	9
+Gadget	7.697	9
+Technology	5.988	7
+Cleanliness	5.483	9
+Lighting	4.644	5
+Wood Flooring	4.393	5
+Daybed	4.361	6
+Display Device	3.895	5
+Wood	3.874	4
+Table	3.735	4
+Couch	3.660	4
+Wood Stain	3.593	5
+Houseplant	3.580	5
+Glass	3.309	4
+Communication Device	3.217	4
+Mobile Phone	3.122	4
+Telephony	3.095	4
+Hardwood	3.078	4
+Graphic Design	2.922	5
+Shelving	2.887	3
+Shelf	2.870	3
+Office Equipment	2.739	3
+Portable Communications Device	2.722	4
+Mobile Device	2.617	4
+Hotel	2.422	4
+Restaurant	2.228	3
+Animation	2.217	3
+Laminate Flooring	2.157	3
+Computer	2.009	3
+Handheld Game Console	1.948	2
+Video Game Console	1.937	2
+Nintendo Ds	1.918	2
+Headquarters	1.916	3
+Electronics	1.902	3
+Home	1.868	2
+Apartment	1.816	2
+Portable Electronic Game	1.756	2
+Game	1.692	2
+Flowerpot	1.653	2
+Office Chair	1.557	2
+Artificial Turf	1.510	2
+Light Fixture	1.483	2
+Stairs	1.481	2
+Silver	1.464	2
+Wallpaper	1.461	2
+Office Supplies	1.441	2
+Telephone	1.438	2
+Personal Computer	1.402	2
+Shade	1.393	2
+Tile	1.383	2
+Daylighting	1.367	2
+Transparency	1.297	2
+Hall	1.295	2
+Varnish	1.223	2
+Pc Game	1.099	2
+Science	1.064	2
+Bookcase	0.991	1
+Mode Of Transport	0.979	1
+Car	0.975	1
+Wall	0.975	1
+Grass	0.974	1
+White	0.970	1
+Transport	0.969	1
+Book	0.965	1
+Public Transport	0.949	1
+Input Device	0.947	1
+Publication	0.946	1
+Home Appliance	0.941	1
+Major Appliance	0.940	1
+Handrail	0.920	1
+Peripheral	0.918	1
+Coffee Table	0.917	1
+Lobby	0.907	1
+Kitchen Appliance	0.906	1
+Comfort	0.905	1
+Tennis Court	0.896	1
+Library	0.887	1
+Computer Hardware	0.885	1
+Mat	0.885	1
+Desk	0.882	1
+Sports	0.876	1
+Automotive Wheel System	0.867	1
+Train	0.867	1
+Cabinetry	0.866	1
+Tennis--Equipment And Supplies	0.866	1
+Sitting	0.861	1
+Rug	0.859	1
+Soft Tennis	0.859	1
+Exercise	0.847	1
+Alloy Wheel	0.844	1
+Metal	0.839	1
+Racquet Sport	0.838	1
+Spoke	0.834	1
+Tennis	0.832	1
+Car Door	0.826	1
+Rolling Stock	0.817	1
+Leisure	0.808	1
+Physical Fitness	0.807	1
+Scion	0.806	1
+Woody Plant	0.806	1
+Fender	0.801	1
+Happiness	0.795	1
+Iron	0.795	1
+Bumper	0.790	1
+Individual Sport	0.788	1
+Carpet	0.787	1
+Clinic	0.783	1
+Lawn	0.774	1
+Rapid Transit	0.770	1
+Hubcap	0.761	1
+Plumbing Fixture	0.751	1
+Natural Material	0.737	1
+Game Controller	0.732	1
+Sports Venue	0.723	1
+Bathtub	0.712	1
+Racketlon	0.711	1
+Baluster	0.700	1
+Net Sport	0.694	1
+Balance	0.691	1
+Nintendo 3ds	0.685	1
+Rolling	0.679	1
+Vase	0.679	1
+Wii	0.674	1
+Advertising	0.671	1
+Building Material	0.661	1
+Plastic	0.658	1
+Yoga	0.649	1
+Steel	0.647	1
+Box	0.643	1
+Yard	0.639	1
+Landscaping	0.638	1
+Evergreen	0.636	1
+Villa	0.634	1
+Bathroom	0.613	1
+Cafeteria	0.612	1
+Laptop	0.611	1
+Floral Design	0.607	1
+Space Bar	0.605	1
+Backyard	0.592	1
+Corporate Headquarters	0.582	1
+Aloes	0.581	1
+Plumbing	0.570	1
+Human Back	0.568	1
+Software	0.567	1
+Foot	0.560	1
+Rail Transport	0.552	1
+Courtyard	0.545	1
+Medical	0.544	1
+Bamboo	0.541	1
+Armrest	0.539	1
+Training	0.524	1
+Hip	0.523	1
+Sofa Bed	0.517	1
+Feature Phone	0.515	1
+Flat-Panel Display	0.515	1
+Waiting Room	0.515	1
+Sedges	0.513	1
+Walkway	0.506	1
+3d Modeling	0.503	1
+Aluminium	0.501	1

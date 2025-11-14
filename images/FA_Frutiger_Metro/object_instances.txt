@@ -1,0 +1,99 @@
+# Object label	TotalScore	Count
+Graphic Design	38.285	52
+Pink	12.867	14
+Blue	6.922	7
+Red	5.851	6
+Entertainment	5.211	6
+Purple	5.049	6
+Yellow	4.800	5
+Animation	4.603	7
+Wallpaper	3.967	7
+Orange	3.720	4
+Fractal Art	3.016	5
+Creative Arts	2.918	4
+Performing Arts	2.590	3
+Technology	2.585	3
+Floral Design	2.428	4
+Modern Art	2.218	4
+White	1.934	2
+High-Rise Building	1.688	2
+Black And White	1.645	2
+Advertising	1.642	2
+Animated Cartoon	1.632	3
+Skyscraper	1.594	2
+Happiness	1.591	2
+Cityscape	1.480	2
+Plastic	1.372	2
+Loudspeaker	1.363	2
+Disco	1.297	2
+Skyline	1.238	2
+Motif	1.163	2
+Psychedelic Art	1.139	2
+Fashion Illustration	1.120	2
+Star	1.008	2
+Electronic Device	0.985	1
+Bottle	0.969	1
+Gadget	0.961	1
+Liquid	0.921	1
+Monochrome Photography	0.921	1
+Music	0.915	1
+Black	0.907	1
+Metropolis	0.905	1
+Physical Fitness	0.903	1
+Carbonated Soft Drinks	0.899	1
+Musical Ensemble	0.882	1
+Extreme Sport	0.875	1
+Mobile Phone	0.874	1
+Communication Device	0.871	1
+Stunt	0.865	1
+Soft Drink	0.863	1
+Glass Bottle	0.862	1
+Cartoon	0.861	1
+Aerospace Engineering	0.857	1
+Alcoholic Drink	0.856	1
+Display Device	0.856	1
+Monochrome	0.855	1
+Freestyle Motocross	0.846	1
+Aviation	0.837	1
+Air Travel	0.834	1
+Grey	0.829	1
+Electronics	0.819	1
+Musical Instrument	0.812	1
+Chordophone	0.805	1
+Motorcycle	0.803	1
+Telephony	0.800	1
+Aircraft	0.795	1
+Fictional Character	0.795	1
+Tower	0.771	1
+Portable Communications Device	0.761	1
+Silhouette	0.750	1
+Packaging And Labeling	0.749	1
+Exercise	0.747	1
+Cg Artwork	0.744	1
+Non-Alcoholic Drink	0.740	1
+Liquor	0.730	1
+Flight	0.725	1
+Jazz	0.725	1
+String Instrument	0.723	1
+Mobile Device	0.715	1
+Dance	0.649	1
+Box	0.643	1
+Neon	0.629	1
+Bmx	0.626	1
+Stunt Performer	0.616	1
+Modern Dance	0.602	1
+Paint	0.600	1
+Compact Disc	0.591	1
+Label	0.579	1
+Astronomical Object	0.573	1
+Sphere	0.572	1
+Zumba	0.564	1
+Fixed-Wing Aircraft	0.554	1
+Sticker	0.552	1
+Cylinder	0.551	1
+Triangle	0.539	1
+Primate	0.528	1
+Wrapping Paper	0.519	1
+Boombox	0.514	1
+Science	0.507	1
+Geraniums	0.504	1
