@@ -127,3 +127,13 @@ logs/
 # ----------------------------
 models/*.pth
 
+dashboard/DA_embedding.html
+dashboard/D_embedding.html
+dashboard/FA_embedding.html
+dashboard/FE_embedding.html
+dashboard/FM_embedding.html
+dashboard/T_embedding.html
+dashboard/prototype/oldprototype.html
+dashboard/prototype/wprototype.html
+images/FA_classic/81_labeledcolor.txt
+objects/test_vectors.py
