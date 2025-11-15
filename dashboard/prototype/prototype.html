@@ -33,15 +33,12 @@ body {
   overflow: hidden;
 }
 
-/* Outlines for debugging */
-.tab, .btn { outline: 2px solid rgba(136, 85, 255, 0.5); }
-.object-slot, .color-bar { outline: 2px solid rgba(140, 140, 140, 0.3); }
-
 .tabbar {
   display: flex;
   gap: 10px;
   padding: 10px 20px 0;
 }
+
 .tab {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -57,12 +54,35 @@ body {
 .tab:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
 .tab.active { background: #fff; box-shadow: var(--shadow); }
 
+/* Learn button styled like the other buttons, blue outline */
+.learn-tab-btn {
+  background: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: 2px solid rgba(80,150,255,0.55);   /* BLUE outline */
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;         /* spacing from DA tab */
+  margin-right: 0;
+  transition: 0.2s ease-in-out;
+}
+.learn-tab-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
 #tab-hint {
   height: 32px;
   display: flex;
   align-items: center;
   padding: 0 22px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   background: rgba(255,255,255,0.6);
   border-bottom: 1px solid rgba(0,0,0,0.03);
@@ -86,76 +106,120 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* LEFT PANEL -------------------------------------------------------- */
 .left-panel {
   flex: 1;
   padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  overflow: hidden;
+  position: relative; /* for bottom-right positioning of bottom-bar */
 }
 
-/* Updated circle grid to fit on one screen */
+/* Bottom bar in bottom-right of left panel */
+.bottom-bar {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Title row containing title + embedding button */
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Embedding Button — matches Compare Colors button */
+#embedding-btn {
+  background: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: 2px solid rgba(136,85,255,0.5);
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  height: 42px;       /* Match Compare Colors height */
+  display: flex;
+  align-items: center;
+}
+#embedding-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+#title {
+  margin: 0 0 8px 0;
+}
+
 .object-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-left: 6px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
   margin-top: 10px;
-  height: calc(100vh - 220px);
-  align-content: start;
+  padding-right: 6px;
+  overflow-y: auto;
 }
 
 .object-slot-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  max-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .object-slot {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   border-radius: 999px;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.object-slot:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .object-slot img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.object-number {
-  position: absolute;
-  bottom: -16px;
-  left: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
+/* Slightly larger class names */
+.class-label {
+  font-size: 0.92rem;
+  margin-top: 6px;
+  text-align: center;
+  color: #333;
+  max-width: 140px;
 }
 
-.object-slot:hover { transform: translateY(-3px); }
+.class-instances {
+  color: #777;
+  font-weight: 500;
+  margin-left: 4px;
+}
 
-/* RIGHT PANEL ------------------------------------------------------ */
+/* Right panel */
 .right-panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
   width: 320px;
   padding: 14px;
   overflow-y: auto;
-  height: 66vh; 
+  height: 66vh;
   align-self: flex-start;
 }
 
-/* Color bars smaller + 2 columns */
+/* Color bars — slightly larger hex font */
 .color-column {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -165,88 +229,14 @@ body {
 .color-bar {
   height: 26px;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.88rem;  /* slightly larger than 0.75rem */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2px 6px;
   white-space: nowrap;
+  outline: 2px solid rgba(140, 140, 140, 0.3);
 }
-
-/* Popup background */
-#popup-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 3000;
-}
-
-#popup-box {
-  width: 340px;
-  background: white;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-#popup-close {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-/* Popup contents */
-.object-entry {
-  background: #e8e8e8;
-  border-radius: 6px;
-  padding: 6px 10px;
-  margin: 6px 0;
-  cursor: pointer;
-  position: relative;
-}
-.object-entry:hover { background: #f0f0f0; }
-.object-entry-count {
-  position: absolute;
-  bottom: -12px;
-  right: 4px;
-  font-size: 0.7rem;
-  color: #555;
-}
-
-.syn-popup {
-  background: #f2f2f2;
-  border-radius: 6px;
-  padding: 8px;
-  margin-top: 10px;
-  display: none;
-  position: relative;
-}
-
-.syn-close {
-  position: absolute;
-  top: 2px;
-  right: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-#copy-toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(40,40,50,0.9);
-  padding: 6px 14px;
-  border-radius: 999px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-#copy-toast.show { opacity: 1; }
 
 /* Compare Colors button */
 #compare-btn {
@@ -261,11 +251,92 @@ body {
   outline: 2px solid rgba(136,85,255,0.5);
   box-shadow: var(--shadow);
   z-index: 2000;
+  font-size: 0.95rem;
 }
 #compare-btn:hover {
   background: var(--accent);
   transform: translateY(-2px);
 }
+
+/* Popup background */
+#popup-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+#popup-box {
+  width: 360px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#popup-close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+#popup-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+#popup-objects {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.object-entry {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin: 6px 0;
+  font-size: 0.85rem;
+}
+
+.object-entry-name {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.object-entry-meta {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.object-entry-syn {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #444;
+}
+
+/* Toast */
+#copy-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(40,40,50,0.9);
+  padding: 6px 14px;
+  border-radius: 999px;
+  opacity: 0;
+  color: #fff;
+  font-size: 0.8rem;
+  transition: opacity 0.2s;
+}
+#copy-toast.show { opacity: 1; }
 </style>
 </head>
 
@@ -275,22 +346,29 @@ body {
 
 <div class="tabbar">
   <div class="tab active" data-key="FA" data-full="Frutiger Aero">FA</div>
-  <div class="tab" data-key="D" data-full="DORFic">D</div>
+  <div class="tab" data-key="D"  data-full="DORFic">D</div>
   <div class="tab" data-key="FM" data-full="Frutiger Metro">FM</div>
   <div class="tab" data-key="FE" data-full="Frutiger Eco">FE</div>
-  <div class="tab" data-key="T" data-full="Technozen">T</div>
+  <div class="tab" data-key="T"  data-full="Technozen">T</div>
   <div class="tab" data-key="DA" data-full="Dark Aero">DA</div>
+
+  <!-- Learn button to the right of DA -->
+  <button class="learn-tab-btn" onclick="window.location.href='learn.html'">
+    Learn About This Project
+  </button>
 </div>
 
 <div id="tab-hint"></div>
 
 <div class="shell">
   <section class="left-panel">
-    <h1 id="title">Frutiger Aero</h1>
+
+    <div class="title-row">
+      <h1 id="title">Frutiger Aero</h1>
+      <button id="embedding-btn">Visualize Embedding Vectors</button>
+    </div>
 
     <div class="object-grid" id="object-grid"></div>
-
-    <!-- REMOVED DOWNLOAD PANEL -->
 
     <div class="bottom-bar">
       Data gathered from <strong id="data-count">0</strong> images
@@ -308,42 +386,36 @@ body {
 <div id="popup-bg">
   <div id="popup-box">
     <div id="popup-close">x</div>
-
-    <div class="object-entry" data-syn="object">
-      object
-      <div class="object-entry-count">3</div>
-    </div>
-
-    <div class="syn-popup" id="syn-popup">
-      <div class="syn-close">x</div>
-      <div>thing</div>
-      <div>item</div>
-      <div>entity</div>
-    </div>
+    <h2 id="popup-title"></h2>
+    <div id="popup-objects"></div>
   </div>
 </div>
 
 <script>
 const aestheticsConfig = {
-  "FA": { folder: "/images/FA_classic", full: "Frutiger Aero", count: 100 },
-  "D":  { folder: "/images/FA_DORFic", full: "DORFic", count: 50 },
-  "FM": { folder: "/images/FA_Frutiger_Metro", full: "Frutiger Metro", count: 65 },
-  "FE": { folder: "/images/FA_Frutiger_Eco", full: "Frutiger Eco", count: 59 },
-  "T":  { folder: "/images/FA_Technozen", full: "Technozen", count: 49 },
-  "DA": { folder: "/images/FA_Dark_Aero", full: "Dark Aero", count: 50 }
+  "FA": { folder: "/images/FA_classic",        csv: "FA_classic_summary.csv",        full: "Frutiger Aero",  count: 100, embed: "FA_embedding.html" },
+  "D":  { folder: "/images/FA_DORFic",         csv: "FA_DORFic_summary.csv",         full: "DORFic",          count: 50, embed: "D_embedding.html"  },
+  "FM": { folder: "/images/FA_Frutiger_Metro", csv: "FA_Frutiger_Metro_summary.csv", full: "Frutiger Metro",  count: 65, embed: "FM_embedding.html" },
+  "FE": { folder: "/images/FA_Frutiger_Eco",   csv: "FA_Frutiger_Eco_summary.csv",   full: "Frutiger Eco",    count: 59, embed: "FE_embedding.html" },
+  "T":  { folder: "/images/FA_Technozen",      csv: "FA_Technozen_summary.csv",      full: "Technozen",       count: 49, embed: "T_embedding.html"  },
+  "DA": { folder: "/images/FA_Dark_Aero",      csv: "FA_Dark_Aero_summary.csv",      full: "Dark Aero",       count: 50, embed: "DA_embedding.html" }
 };
 
-const titleEl = document.getElementById("title");
-const objectGrid = document.getElementById("object-grid");
+const titleEl     = document.getElementById("title");
+const objectGrid  = document.getElementById("object-grid");
 const colorColumn = document.getElementById("color-column");
-const countEl = document.getElementById("data-count");
-const toast = document.getElementById("copy-toast");
-const popupBG = document.getElementById("popup-bg");
-const popupClose = document.getElementById("popup-close");
-const synPopup = document.getElementById("syn-popup");
-const synClose = document.querySelector(".syn-close");
+const countEl     = document.getElementById("data-count");
+const toast       = document.getElementById("copy-toast");
+const tabHint     = document.getElementById("tab-hint");
+const embeddingBtn = document.getElementById("embedding-btn");
+
+const popupBG      = document.getElementById("popup-bg");
+const popupClose   = document.getElementById("popup-close");
+const popupTitle   = document.getElementById("popup-title");
+const popupObjects = document.getElementById("popup-objects");
 
 let currentKey = "FA";
+let cachedData = {};  // key -> { classes: [...], colors: [...] }
 
 function pickTextColor(hex) {
   const r = parseInt(hex.substring(1, 3), 16);
@@ -353,69 +425,234 @@ function pickTextColor(hex) {
   return brightness < 128 ? "#FFFFFF" : "#000000";
 }
 
-async function loadAestheticData(key) {
-  const { folder, count } = aestheticsConfig[key];
-  let colors = [];
-  const objects = Array.from({ length: 20 }, (_, i) =>
-    `/dashboard/drawn/${i}.png`
-  );
-
+// Load colors.txt for an aesthetic
+async function loadColors(folder) {
   try {
-    const res = await fetch(`${folder}/colors.txt`);
+    const res  = await fetch(`${folder}/colors.txt`);
     const text = await res.text();
-
-    colors = text.split(/\r?\n/)
+    return text.split(/\r?\n/)
       .map(s => s.trim())
       .filter(s => /^#?[A-Fa-f0-9]{6}$/.test(s))
       .map(s => (s.startsWith("#") ? s : "#" + s));
-
-  } catch(e) {
-    colors = ["#CCCCCC"];
+  } catch (e) {
+    return ["#CCCCCC"];
   }
-
-  return { colors, objects, count };
 }
 
-function render(key, data) {
-  titleEl.textContent = aestheticsConfig[key].full;
-  countEl.textContent = data.count;
+// Simple CSV parser with header inspection
+function parseCSV(text) {
+  const lines = text.replace(/\r/g, "").split("\n").filter(l => l.trim() !== "");
+  if (!lines.length) return [];
 
-  objectGrid.innerHTML = data.objects.map((src, i) => `
-    <div class="object-slot-wrapper" data-index="${i}">
+  const header = lines[0].split(",");
+  const idxClass = 0;
+  const idxObject = 1;
+  let idxScore = -1;
+  let idxInst  = -1;
+  let idxSyn   = -1;
+
+  header.forEach((h, i) => {
+    const ht = h.trim();
+    if (ht.toLowerCase().startsWith("score") && idxScore === -1) idxScore = i;
+    else if (ht.toLowerCase().startsWith("instances") && idxInst === -1) idxInst = i;
+    else if (ht.toLowerCase() === "synonyms") idxSyn = i;
+  });
+
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+    const cols = line.split(",");
+    const get = (idx) => (idx >= 0 && idx < cols.length ? cols[idx].trim() : "");
+    const cls = get(idxClass);
+    const obj = get(idxObject);
+    const scoreStr = get(idxScore);
+    const instStr  = get(idxInst);
+    const syn = get(idxSyn);
+
+    const score = scoreStr ? parseFloat(scoreStr) : 0;
+    const inst  = instStr  ? parseFloat(instStr)  : 0;
+
+    rows.push({
+      cls,
+      obj,
+      score,
+      inst,
+      syn
+    });
+  }
+  return rows;
+}
+
+// Build class structure using RULE: non-empty first column = class
+function buildClassesFromRows(rows) {
+  const classMap = {};
+  let lastClassName = null;
+
+  for (const r of rows) {
+    const hasClass = r.cls !== "";
+
+    if (hasClass) {
+      lastClassName = r.cls;
+      if (!classMap[lastClassName]) {
+        classMap[lastClassName] = {
+          name: lastClassName,
+          totalScore: 0,
+          instances: 0,
+          items: []
+        };
+      }
+      classMap[lastClassName].totalScore = r.score;
+      classMap[lastClassName].instances  = r.inst;
+    } else {
+      if (!lastClassName) continue;
+      const clsObj = classMap[lastClassName] || (classMap[lastClassName] = {
+        name: lastClassName,
+        totalScore: 0,
+        instances: 0,
+        items: []
+      });
+
+      if (!r.obj) continue;
+
+      clsObj.items.push({
+        object:   r.obj,
+        score:    r.score,
+        instances:r.inst,
+        synonyms: r.syn
+      });
+    }
+  }
+
+  return Object.values(classMap);
+}
+
+// Load both CSV + colors for an aesthetic key
+async function loadAestheticData(key) {
+  if (cachedData[key]) return cachedData[key];
+
+  const { folder, csv } = aestheticsConfig[key];
+
+  const [colorArr, csvRes] = await Promise.all([
+    loadColors(folder),
+    fetch(`${folder}/${csv}`)
+  ]);
+
+  const csvText = await csvRes.text();
+  const rows    = parseCSV(csvText);
+  const classes = buildClassesFromRows(rows);
+
+  const data = { colors: colorArr, classes };
+  cachedData[key] = data;
+  return data;
+}
+
+/* ------------------------- RENDER FUNCTION ------------------------- */
+function render(key, data) {
+  const cfg = aestheticsConfig[key];
+  titleEl.textContent = cfg.full;
+  countEl.textContent = cfg.count ?? data.classes.length;
+
+  // Wire up embedding button for this aesthetic
+  if (cfg.embed) {
+    embeddingBtn.style.display = "inline-flex";
+    embeddingBtn.onclick = () => {
+      window.open(`/dashboard/${cfg.embed}`, "_blank");
+    };
+  } else {
+    embeddingBtn.style.display = "none";
+  }
+
+  // Sort classes by instances; remove TOTALS
+  data.classes = data.classes
+    .filter(c => c.name !== "TOTALS")
+    .sort((a, b) => b.instances - a.instances);
+
+  objectGrid.innerHTML = data.classes.map(cls => `
+    <div class="object-slot-wrapper" data-class="${cls.name}">
       <div class="object-slot">
-        <img src="${src}" onerror="this.style.display='none'">
+        <img src="/dashboard/drawn/${cls.name}.png"
+             onerror="this.src='/dashboard/drawn/Shape.png'">
       </div>
-      <div class="object-number">${i+1}</div>
+      <div class="class-label">
+        ${cls.name.replace(/_/g, " ")}
+        <span class="class-instances">(${cls.instances})</span>
+      </div>
     </div>
   `).join("");
 
-  document.querySelectorAll(".object-slot-wrapper").forEach(slot => {
-    slot.addEventListener("click", () => {
-      popupBG.style.display = "flex";
+  // attach click to open popup
+  document.querySelectorAll(".object-slot-wrapper").forEach(wrapper => {
+    wrapper.addEventListener("click", () => {
+      const clsName = wrapper.dataset.class;
+      const classObj = data.classes.find(c => c.name === clsName);
+      if (!classObj) return;
+      openPopup(classObj);
     });
   });
 
+  // colors
   colorColumn.innerHTML = data.colors.map(c => `
     <div class="color-bar" style="background:${c}; color:${pickTextColor(c)}" data-hex="${c}">
       ${c}
     </div>
   `).join("");
 }
+/* ------------------------------------------------------------------------- */
 
+// Popup logic
+function openPopup(classObj) {
+  popupTitle.textContent = classObj.name.replace(/_/g, " ");
+
+  // sort items by instances DESC
+  const sortedItems = [...classObj.items].sort((a, b) => b.instances - a.instances);
+
+  if (!sortedItems.length) {
+    popupObjects.innerHTML = `<div class="object-entry">No additional object labels recorded for this class.</div>`;
+  } else {
+    popupObjects.innerHTML = sortedItems.map(item => `
+      <div class="object-entry">
+        <div class="object-entry-name">${item.object.replace(/_/g, " ")}</div>
+        <div class="object-entry-meta">
+          Instances: ${item.instances}
+        </div>
+        ${item.synonyms ? `<div class="object-entry-syn">Synonyms: ${item.synonyms.replace(/_/g," ")}</div>` : ""}
+      </div>
+    `).join("");
+  }
+
+  popupBG.style.display = "flex";
+}
+
+popupClose.addEventListener("click", () => {
+  popupBG.style.display = "none";
+});
+
+popupBG.addEventListener("click", (e) => {
+  if (e.target === popupBG) popupBG.style.display = "none";
+});
+
+// Color click-to-copy
 colorColumn.addEventListener("click", e => {
   const bar = e.target.closest(".color-bar");
   if (!bar) return;
-  navigator.clipboard.writeText(bar.dataset.hex);
+  const hex = bar.dataset.hex;
+  if (!hex) return;
+  navigator.clipboard.writeText(hex);
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 900);
 });
 
+// Tabs + hint
 document.querySelectorAll(".tab").forEach(tab => {
   tab.addEventListener("mouseenter", () => {
-    tabHint.textContent = aestheticsConfig[tab.dataset.key].full;
+    const key = tab.dataset.key;
+    tabHint.textContent = aestheticsConfig[key].full;
     tabHint.classList.add("show");
   });
-  tab.addEventListener("mouseleave", () => tabHint.classList.remove("show"));
+  tab.addEventListener("mouseleave", () => {
+    tabHint.classList.remove("show");
+  });
 
   tab.addEventListener("click", async () => {
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
@@ -426,20 +663,12 @@ document.querySelectorAll(".tab").forEach(tab => {
   });
 });
 
-popupClose.addEventListener("click", () => popupBG.style.display = "none");
-
-document.querySelector(".object-entry").addEventListener("click", () => {
-  synPopup.style.display = "block";
-});
-
-synClose.addEventListener("click", () => {
-  synPopup.style.display = "none";
-});
-
+// Compare Colors button
 document.getElementById("compare-btn").addEventListener("click", () => {
   window.open("/dashboard/color_plot_output.html", "_blank");
 });
 
+// Initial load
 (async () => {
   const data = await loadAestheticData(currentKey);
   render(currentKey, data);
