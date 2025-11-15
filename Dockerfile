@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
 # ------------------------------------------------------------
 # Python dependencies for 3D color plotting
 # ------------------------------------------------------------
-RUN pip3 install --break-system-packages numpy scipy plotly
+RUN pip3 install --break-system-packages numpy scipy plotly scikit-learn
 
 # ------------------------------------------------------------
 # R packages for text mining, visualization, and trends
