@@ -8,27 +8,59 @@ DASHBOARD_PORT = 8181
 PASSWORD = mysecret
 R = Rscript
 
-# ------------------------------------------------------------
-# High-level build order
-# ------------------------------------------------------------
+# ============================================================
+# FILE DISCOVERY
+# ============================================================
 
-# make all = build everything
+# All FA PNG files
+PNG_FILES := $(wildcard images/FA_*/*.png)
+
+# Correct rule: foo.png → fooobject.txt
+OBJECT_TXT := $(PNG_FILES:.png=object.txt)
+
+# Base color files
+COLOR_TXT := $(wildcard images/FA_*/colors.txt)
+
+# Numbered color files
+NUMBERED_COLOR_TXT := $(wildcard images/FA_*/*colors.txt)
+
+# Outputs
+COLOR_PLOT := dashboard/color_plot_output.html
+EMBED_PLOT := dashboard/embedding_plot_output.html
+
+# Any file named vectors_object_instances.txt
+VECTOR_OBJECT_FILES := $(shell find . -type f -name "vectors_object_instances.txt")
+
+
+# ============================================================
+# HIGH-LEVEL TARGETS
+# ============================================================
+
 .PHONY: all
-all: colors objects colors-plot
-	@echo "✔ Full project build complete."
+all: colors objects colors-plot embeddings dashboard
+	@echo "✔ Full project build complete (including dashboard)."
 
-# make dashboard = run dashboard ONLY
+
 .PHONY: dashboard
-dashboard:
+dashboard: $(EMBED_PLOT)
 	cd dashboard && ./run_dashboard.sh
 
 
-# ------------------------------------------------------------
-# Dockerized RStudio environment
-# ------------------------------------------------------------
+# report = dashboard
+.PHONY: report
+report: dashboard
+	@echo "✔ Dashboard launched (via report)."
+
+
+# ============================================================
+# DOCKER
+# ============================================================
+
+.PHONY: build
 build:
 	docker build -t $(IMAGE) .
 
+.PHONY: run
 run:
 	docker run --rm \
 		-e PASSWORD=$(PASSWORD) \
@@ -37,25 +69,16 @@ run:
 		-v "$(PWD)":/home/rstudio/project \
 		$(IMAGE)
 
+.PHONY: stop
 stop:
 	docker ps -q --filter ancestor=$(IMAGE) | xargs -r docker stop
 
 
 # ============================================================
-# COLOR PLOT + COLOR DATA GENERATION
+# COLOR PIPELINE
 # ============================================================
 
-# Base colors.txt
-COLOR_TXT := $(wildcard images/FA_*/colors.txt)
-
-# Numbered color files (0colors.txt → 1000colors.txt → infinite)
-NUMBERED_COLOR_TXT := $(wildcard images/FA_*/*colors.txt)
-
-# Output HTML for Plotly figure
-COLOR_PLOT := dashboard/color_plot_output.html
-
-
-# ---------- COLOR DATA GENERATION ----------
+.PHONY: colors
 colors:
 	@echo "Rebuilding all color data..."
 	@find images/FA_* -type f -name "colors.txt" -delete
@@ -65,38 +88,53 @@ colors:
 	@echo "✔ Color data regenerated."
 
 
-# ---------- ENSURE CORRECT ORDERING ----------
-# colors-plot runs ONLY after colors is finished
+.PHONY: colors-plot
 colors-plot: colors $(COLOR_PLOT)
 	@echo "✔ Colors 3D plot updated."
 
 
-# ---------- PLOTLY GENERATION ----------
 $(COLOR_PLOT): dashboard/color_plot.py $(COLOR_TXT)
 	@echo "Generating 3D color plot..."
 	python3 dashboard/color_plot.py
 
 
 # ============================================================
-# OBJECT DATA (Vision API aggregation)
+# OBJECT PIPELINE
 # ============================================================
 
-objects:
+$(OBJECT_TXT):
+	@echo "❌ Missing object file: $@  (expected from $(@:object.txt=.png))"
+	@echo "Every .png must have a matching object.txt"
+	@exit 1
+
+
+.PHONY: objects
+objects: $(OBJECT_TXT)
 	@echo "Aggregating Vision API object data..."
 	$(R) objects/aggregate_FA_objects.R
 	@echo "✔ All object data aggregated."
 
 
-# ------------------------------------------------------------
-# Report generation
-# ------------------------------------------------------------
-report: $(COLOR_TXT)
-	@echo "Color data up to date. Ready for downstream analysis."
+# ============================================================
+# VECTOR + EMBEDDING PIPELINE
+# ============================================================
+
+# Embedding plot must depend on all vectors_object_instances.txt files
+$(EMBED_PLOT): dashboard/embedding_plot.py $(VECTOR_OBJECT_FILES)
+	@echo "Generating embedding plot..."
+	python3 dashboard/embedding_plot.py
 
 
-# ------------------------------------------------------------
-# Clean — removes Docker leftovers + intermediate txt files
-# ------------------------------------------------------------
+.PHONY: embeddings
+embeddings: $(EMBED_PLOT)
+	@echo "✔ Embedding plot generated."
+
+
+# ============================================================
+# CLEAN
+# ============================================================
+
+.PHONY: clean
 clean:
 	@echo "Running clean..."
 	@if command -v docker >/dev/null 2>&1; then \
@@ -106,33 +144,35 @@ clean:
 		echo "Docker not available."; \
 	fi
 
-	@echo "Removing generated color files..."
+	@echo "Removing color files..."
 	@find images/FA_* -type f -name "colors.txt" -delete
 	@find images/FA_* -type f -regex ".*[0-9]+colors\.txt" -delete
 
-	@echo "Removing generated color plot HTML..."
+	@echo "Removing color + embedding HTML..."
 	@rm -f dashboard/color_plot_output.html
+	@find dashboard -type f -name "*_embedding.html" -delete
 
 	@echo "✔ Clean complete."
 
 
-# ------------------------------------------------------------
-# Help
-# ------------------------------------------------------------
+# ============================================================
+# HELP
+# ============================================================
+
+.PHONY: help
 help:
 	@echo ""
 	@echo "Available targets:"
-	@echo "  all                Build ENTIRE project (colors → objects → plot)"
-	@echo "  dashboard          Run the dashboard (assumes 'all' already run)"
-	@echo "  colors             Rebuild color data (extract + aggregate)"
+	@echo "  all                Full pipeline + dashboard"
+	@echo "  dashboard          Launch dashboard"
+	@echo "  report             Same as 'dashboard'"
+	@echo "  colors             Rebuild color data"
 	@echo "  colors-plot        Generate 3D Plotly colors figure"
-	@echo "  objects            Aggregate object.txt files (no API calls)"
-	@echo "  report             Basic report readiness check"
-	@echo "  clean              Remove intermediates + Docker leftovers"
-	@echo "  build              Build Docker RStudio environment"
-	@echo "  run                Start RStudio + dashboard container"
-	@echo "  stop               Stop running container(s)"
+	@echo "  objects            Aggregate object.txt data"
+	@echo "  embeddings         Generate embeddings plot"
+	@echo "  clean              Remove intermediates"
+	@echo "  build              Build Docker environment"
+	@echo "  run                Start RStudio + dashboard"
+	@echo "  stop               Stop running containers"
 	@echo ""
-
-.PHONY: build run stop clean colors objects dashboard report help colors-plot
 
