@@ -172,7 +172,8 @@ body {
   cursor:pointer;
 }
 
-.object-slot-wrapper:hover {
+/* NEW: only the circular icon lifts on hover */
+.object-slot-wrapper:hover .object-slot {
   transform: translateY(-5px);
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
@@ -187,7 +188,9 @@ body {
   align-items:center;
   overflow:hidden;
   box-shadow:var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
+
 .object-slot img { width:118%; height:118%; object-fit:contain; }
 
 .class-label {
@@ -498,7 +501,6 @@ async function loadAestheticData(key) {
 }
 
 /* --------------------------
-   RESTORED FUNCTIONALITY:
    Linking embedding button
 --------------------------- */
 function updateEmbeddingButton(aestheticKey) {
