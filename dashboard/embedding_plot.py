@@ -1,4 +1,12 @@
 import os
+
+# ============================================================
+# FORCE SINGLE-THREAD BLAS FOR TRUE DETERMINISM
+# ============================================================
+
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+
 import numpy as np
 import plotly.graph_objects as go
 from sklearn.manifold import TSNE
@@ -25,80 +33,113 @@ AESTHETICS = {
 }
 
 # ============================================================
-# UPDATED CLUSTERS (replacing all previous connections)
+# NEW UPDATED CLUSTERS (CONNECTIONS)
 # ============================================================
 
 CLUSTERS = {
 
-    "FA_classic": [   # FA
-        ["Chess", "Chessboard"],
-        ["Meadow", "Grasses"],
-        ["Underwater", "Ocellaris_Clownfish", "Aquarium", "Sea", "Fish", "Pomacentridae"],
+    # --------------------------------------------------------
+    "FA_classic": [
+        ["Goldfish", "Aquarium", "Underwater"],
+        ["Strawberry", "Rangpur", "Orange", "Lemon"],
+        ["Ceiling", "Floor"],
+        ["Bead", "Marble", "Gemstone"],
+        ["Ball", "Spring", "Balance"],
+        ["Coral_Reef_Fish", "Sea", "Fin", "Ocellaris_Clownfish"],
+        ["Lobby", "Waiting_Room"],
+        ["Field", "Park", "Grasses"],
+        ["Highway", "Intersection"],
+        ["Computer_Program", "Computer_Monitor", "Computer_Hardware", "Computer"],
+        ["Wind_Wave", "Wind", "Cumulus", "Sunlight"],
     ],
 
-    "FA_DORFic": [    # D
-        ["Apples", "Citrus"],
-        ["Exhibition", "Modern_Art"],
-        ["Produce", "Food"],
-        ["Operating_System", "Software", "Multimedia_Software"],
+    # --------------------------------------------------------
+    "FA_DORFic": [
+        ["Mobile_Phone", "Personal_Computer", "Electronic_Device"],
+        ["Technology", "Gadget", "Electronics"],
+        ["Floor", "Tile", "Flooring"],
+        ["Yellow", "Orange"],
+        ["Produce", "Food", "Natural_Foods"],
+        ["Clock", "Measuring_Instrument"],
+        ["Electrical_Cable", "Wire"],
     ],
 
-    "FA_Frutiger_Eco": [   # FE
-        ["Tropics", "Water", "Ocean"],
-        ["Map", "Atlas"],
-        ["Garden", "Green"],
-        ["Cloud", "Cumulus"],
-        ["Technology", "Machine"],
+    # --------------------------------------------------------
+    "FA_Frutiger_Eco": [
+        ["Graphic_Design", "Advertising"],
+        ["Field", "Garden", "Green"],
+        ["Jewelry_Making", "Bracelet", "Gemstone"],
+        ["Pasture", "Grasslands", "Prarie"],
+        ["Wall", "Ceiling", "Room"],
+        ["Pharmaceutical_Drug", "Stimulant", "Medicine", "Pill"],
     ],
 
-    "FA_Dark_Aero": [  # DA
-        ["Moon", "Moonlight", "Full_Moon"],
-        ["Feature_Phone", "Communication_Device"],
-        ["Computer", "Technology", "Operating_System"],
-        ["Fluid", "Liquid"],
+    # --------------------------------------------------------
+    "FA_Dark_Aero": [
+        ["Darkness", "Constellation", "Night"],
+        ["Night", "Moonlight", "Full_Moon"],
+        ["Game_Controller", "Joystick"],
+        ["Celestial_Event", "Astronomical_Object"],
+        ["Skyline", "Metropolitan_Area", "Skyscraper"],
+        ["Night", "Constellation"],
     ],
 
-    "FA_Frutiger_Metro": [  # FM
-        ["Chordophone", "Musical_Ensemble", "Disco"],
-        ["Graphic_Design", "Packaging_And_Labeling"],
-        ["Music", "Jazz"],
+    # --------------------------------------------------------
+    "FA_Frutiger_Metro": [
+        ["Freestyle_Motorcross", "Bmx", "Stunt_Performer"],
+        ["Exercise", "Physical_Fitness", "Zumba"],
+        ["Black", "Monochrome", "White"],
+        ["Animation", "Cartoon"],
+        ["Glass_Bottle", "Label", "Soft_Drink"],
+        ["Fixed-Wing_Aircraft", "Aircraft", "Aerospace_Engineering"],
     ],
 
-    "FA_Technozen": [   # T
-        ["Soft_Tennis", "Sports_Venue", "Tennis_Court", "Racketlon"],
-        ["Evergreen", "Bamboo"],
-        ["Nintendo_3ds", "Wii", "Portable_Electronic_Game"],
-        ["Rapid_Transport", "Mode_Of_Transport", "Train"],
+    # --------------------------------------------------------
+    "FA_Technozen": [
+        ["Racketlon", "Soft_Tennis", "Tennis_Court", "Tennis_Equiptment_And_Supplies"],
+        ["Bamboo", "Evergreen", "Aloes"],
+        ["Steel", "Iron", "Metal", "Aluminum", "Silver"],
+        ["Bathroom", "Bathtub", "Laminate_Flooring", "Tile", "Plumbing"],
+        ["Houseplant", "Flower_Pot"],
+        ["Car", "Car_Door", "Fender"],
     ],
 }
 
-# Distinct, readable line colors
-LINE_COLORS = [
-    "rgba(255,120,120,0.85)",
-    "rgba(120,255,120,0.85)",
-    "rgba(120,120,255,0.85)",
-    "rgba(255,200,120,0.85)",
-    "rgba(180,120,255,0.85)",
-    "rgba(120,255,255,0.85)",
-    "rgba(255,180,220,0.85)",
-    "rgba(220,255,180,0.85)",
-]
+# ============================================================
+# OUTLIERS (HIDDEN FROM PLOT BUT INCLUDED IN t-SNE)
+# ============================================================
+
+OUTLIERS = {
+    "FA_classic": ["Blue", "Ocean"],
+    "FA_DORFic": ["Graphic_Design", "Plastic", "Interior_Design", "Apples"],
+    "FA_Frutiger_Eco": ["Floor"],
+    "FA_Dark_Aero": ["Audio_Equiptment", "Loudspeaker", "Operating_System"],
+    "FA_Frutiger_Metro": [
+        "Black", "Sticker", "Motif", "Mobile_Device",
+        "Compact_Disk", "Silhouette", "Wallpaper", "Psychadelic_Art",
+    ],
+    "FA_Technozen": ["Shelving", "Corporate_Headquarters"],
+}
 
 # ============================================================
-# t-SNE FUNCTION (stabilized)
+# FULLY DETERMINISTIC t-SNE
 # ============================================================
 
 def run_tsne(vectors):
-    print("Running t-SNE…")
+    print("Running deterministic t-SNE…")
 
     tsne = TSNE(
         n_components=3,
-        perplexity=20,
+        perplexity=10,
         learning_rate=200,
-        n_jobs=-1,
+        n_jobs=1,
         verbose=1,
-        random_state=242,   # <<< FIXED STABLE LAYOUT
-        init="random",      # <<< reproducible but true t-SNE
+        random_state=242,
+        init="pca",
+        method="exact",
+        early_exaggeration=12.0,
+        n_iter=1000,
+        n_iter_without_progress=300,
     )
 
     return tsne.fit_transform(vectors)
@@ -119,70 +160,102 @@ def generate_plot(aesthetic, output_filename):
         print(f"Missing: {vector_file}")
         return
 
-    print(f"→ Loading vectors: {vector_file}")
-
     labels = []
     scores = []
     instances = []
     vectors = []
 
+    # =======================================================
+    # LOAD ALL VECTORS — NO OUTLIERS REMOVED FOR t-SNE
+    # =======================================================
+
     with open(vector_file, "r") as f:
         for line in f:
             if ":" not in line:
                 continue
+
             try:
                 name, score, inst, vec_str = line.strip().split(":", 3)
                 labels.append(name)
                 scores.append(float(score))
                 instances.append(int(inst))
                 vectors.append(ast.literal_eval(vec_str))
+
             except:
-                print("Skipping malformed:", line)
                 continue
 
     vectors = np.array(vectors)
-    print(f"✓ Loaded {len(vectors)} vectors (dim {vectors.shape[1]})")
+    print(f"✓ Loaded {len(vectors)} vectors (including outliers)")
 
-    # Run stable t-SNE
+    # =======================================================
+    # RUN t-SNE ON FULL SET (MATCHES d_embedding_plot.py)
+    # =======================================================
+
     coords = run_tsne(vectors)
-    x, y, z = coords[:, 0], coords[:, 1], coords[:, 2]
+    x_all, y_all, z_all = coords[:, 0], coords[:, 1], coords[:, 2]
 
-    # Marker sizes
-    sizes = [(inst * 2) + 6 for inst in instances]
+    # =======================================================
+    # DROP OUTLIERS *ONLY FOR PLOTTING*
+    # =======================================================
 
-    # Base scatter plot
+    drop = set(OUTLIERS.get(aesthetic, []))
+
+    keep_indices = [i for i, lbl in enumerate(labels) if lbl not in drop]
+
+    filtered_labels = [labels[i] for i in keep_indices]
+    filtered_instances = [instances[i] for i in keep_indices]
+    x = x_all[keep_indices]
+    y = y_all[keep_indices]
+    z = z_all[keep_indices]
+
+    print(f"✓ Plotting {len(filtered_labels)} points after hiding outliers")
+
+    sizes = [(inst * 2) + 6 for inst in filtered_instances]
+
     fig = go.Figure()
+
+    # =======================================================
+    # POINT CLOUD
+    # =======================================================
 
     fig.add_trace(go.Scatter3d(
         x=x, y=y, z=z,
         mode="markers",
         marker=dict(
             size=sizes,
-            color=instances,
+            color=filtered_instances,
             colorscale="Viridis",
             opacity=0.9
         ),
-        text=labels,
+        text=filtered_labels,
         hovertemplate="<b>%{text}</b><br>Instances=%{marker.size}<extra></extra>",
         name="Points"
     ))
 
     # =======================================================
-    # ADD COLORED CONNECTION LINES FOR CLUSTERS
+    # ADD CLUSTER CONNECTION LINES (ON FILTERED POINTS)
     # =======================================================
 
     if aesthetic in CLUSTERS:
-        label_to_idx = {label: i for i, label in enumerate(labels)}
+        label_to_idx = {label: i for i, label in enumerate(filtered_labels)}
         color_i = 0
 
+        LINE_COLORS = [
+            "rgba(255,120,120,0.85)",
+            "rgba(120,255,120,0.85)",
+            "rgba(120,120,255,0.85)",
+            "rgba(255,200,120,0.85)",
+            "rgba(180,120,255,0.85)",
+            "rgba(120,255,255,0.85)",
+            "rgba(255,180,220,0.85)",
+            "rgba(220,255,180,0.85)",
+        ]
+
         for group in CLUSTERS[aesthetic]:
+            indices = [label_to_idx[l] for l in group if l in label_to_idx]
             group_color = LINE_COLORS[color_i % len(LINE_COLORS)]
             color_i += 1
 
-            # Only include labels actually present in this dataset
-            indices = [label_to_idx[l] for l in group if l in label_to_idx]
-
-            # Fully connected edges for all pairs
             for i, j in combinations(indices, 2):
                 fig.add_trace(go.Scatter3d(
                     x=[x[i], x[j]],
@@ -190,13 +263,22 @@ def generate_plot(aesthetic, output_filename):
                     z=[z[i], z[j]],
                     mode="lines",
                     line=dict(color=group_color, width=4),
-                    hovertemplate=f"<b>{labels[i]} ↔ {labels[j]}</b><extra></extra>",
+                    hovertemplate=f"<b>{filtered_labels[i]} ↔ {filtered_labels[j]}</b><extra></extra>",
                     showlegend=False
                 ))
 
-    # Layout
+    # =======================================================
+    # PAGE LAYOUT (WITH t-SNE CAVEAT NOTE)
+    # =======================================================
+
     fig.update_layout(
-        title=f"3D t-SNE — {aesthetic} Object Embeddings",
+        title=(
+            f"3D t-SNE — {aesthetic} Object Embeddings<br>"
+            f"<span style='font-size:16px;color:#bbb;'>"
+            f"Note: t-SNE preserves some local relationships, but dissimilar words may appear close together "
+            f"and similar words may appear far apart due to dimensionality reduction."
+            f"</span>"
+        ),
         scene=dict(
             xaxis_title="t-SNE 1",
             yaxis_title="t-SNE 2",
@@ -211,7 +293,7 @@ def generate_plot(aesthetic, output_filename):
     )
 
     # =======================================================
-    # DISCLAIMER — BOTTOM OF PAGE
+    # DISCLAIMER
     # =======================================================
 
     disclaimer = """
@@ -219,16 +301,15 @@ def generate_plot(aesthetic, output_filename):
             color: #ccc;
             font-size: 16px;
             margin-top: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             width: 80%;
             text-align: center;
             line-height: 1.4;
         '>
             <b>Important:</b> These points represent semantic embeddings generated using
-            Google Vertex AI’s <code>text-embedding-005</code> model (768-dimensional vectors).
-            Labels identified by Google Cloud Vision were embedded using this model and then
-            reduced to 3D using t-SNE. A fixed random seed (242) is used to ensure stable,
-            reproducible spatial layouts each time the visualization is generated.
+            Google Vertex AI’s <code>text-embedding-005</code> model.<br>
+            Labels come directly from Google Cloud Vision and are not hand-curated.<br>
+            Deterministic t-SNE settings ensure reproducible layouts on every run.
         </div>
     """
 
@@ -280,8 +361,7 @@ def generate_plot(aesthetic, output_filename):
     with open(output_path, "w") as f:
         f.write(html_out)
 
-    print(f"✓ Saved HTML plot → {output_path}")
-
+    print(f"✓ Saved HTML plot →", output_path)
 
 # ============================================================
 # MAIN LOOP
