@@ -37,12 +37,12 @@ VECTOR_OBJECT_FILES := $(shell find . -type f -name "vectors_object_instances.tx
 # ============================================================
 
 .PHONY: all
-all: colors objects colors-plot embeddings dashboard
+all: colors objects random-embeddings colors-plot embeddings dashboard
 	@echo "✔ Full project build complete (including dashboard)."
 
 
 .PHONY: dashboard
-dashboard: $(EMBED_PLOT)
+dashboard: $(EMBED_PLOT) $(RANDOM_EMBED_PLOT)
 	cd dashboard && ./run_dashboard.sh
 
 
@@ -101,9 +101,9 @@ $(COLOR_PLOT): dashboard/color_plot.py $(COLOR_TXT)
 # ============================================================
 # OBJECT PIPELINE
 # ============================================================
-
+/
 $(OBJECT_TXT):
-	@echo "❌ Missing object file: $@  (expected from $(@:object.txt=.png))"
+	@echo "Missing object file: $@  (expected from $(@:object.txt=.png))"
 	@echo "Every .png must have a matching object.txt"
 	@exit 1
 
@@ -113,6 +113,21 @@ objects: $(OBJECT_TXT)
 	@echo "Aggregating Vision API object data..."
 	$(R) objects/aggregate_FA_objects.R
 	@echo "✔ All object data aggregated."
+
+
+# ============================================================
+# RANDOM EMBEDDINGS PIPELINE (NEW)
+# ============================================================
+
+RANDOM_EMBED_PLOT := dashboard/random_embedding_plot_output.html
+
+$(RANDOM_EMBED_PLOT): dashboard/random_embedding_plot.py $(VECTOR_OBJECT_FILES)
+	@echo "Generating random embeddings plot..."
+	python3 dashboard/random_embedding_plot.py
+
+.PHONY: random-embeddings
+random-embeddings: $(RANDOM_EMBED_PLOT)
+	@echo "✔ Random embeddings plot generated."
 
 
 # ============================================================
@@ -151,6 +166,7 @@ clean:
 	@echo "Removing color + embedding HTML..."
 	@rm -f dashboard/color_plot_output.html
 	@find dashboard -type f -name "*_embedding.html" -delete
+	@rm -f dashboard/random_embedding_plot_output.html
 
 	@echo "✔ Clean complete."
 
@@ -169,6 +185,7 @@ help:
 	@echo "  colors             Rebuild color data"
 	@echo "  colors-plot        Generate 3D Plotly colors figure"
 	@echo "  objects            Aggregate object.txt data"
+	@echo "  random-embeddings  Generate random embeddings plot"
 	@echo "  embeddings         Generate embeddings plot"
 	@echo "  clean              Remove intermediates"
 	@echo "  build              Build Docker environment"
