@@ -15,6 +15,10 @@ R = Rscript
 # All FA PNG files
 PNG_FILES := $(wildcard images/FA_*/*.png)
 
+ifeq ($(PNG_FILES),)
+  $(error No PNG files found in images/FA_*/)
+endif
+
 # Correct rule: foo.png → fooobject.txt
 OBJECT_TXT := $(PNG_FILES:.png=object.txt)
 
@@ -27,29 +31,26 @@ NUMBERED_COLOR_TXT := $(wildcard images/FA_*/*colors.txt)
 # Outputs
 COLOR_PLOT := dashboard/color_plot_output.html
 EMBED_PLOT := dashboard/embedding_plot_output.html
+RANDOM_EMBED_PLOT := dashboard/random_embedding_plot_output.html
 
 # Any file named vectors_object_instances.txt
 VECTOR_OBJECT_FILES := $(shell find . -type f -name "vectors_object_instances.txt")
 
 
 # ============================================================
-# HIGH-LEVEL TARGETS
+# HIGH-LEVEL TARGETS (all → dashboard → full pipeline)
 # ============================================================
 
-.PHONY: all
-all: colors objects random-embeddings colors-plot embeddings dashboard
-	@echo "✔ Full project build complete (including dashboard)."
+.PHONY: all report dashboard build-dashboard
 
+all: build-dashboard
+report: build-dashboard
+dashboard: build-dashboard
 
-.PHONY: dashboard
-dashboard: $(EMBED_PLOT) $(RANDOM_EMBED_PLOT)
+# Full pipeline before launching dashboard
+build-dashboard: colors objects colors-plot random-embeddings embeddings
 	cd dashboard && ./run_dashboard.sh
-
-
-# report = dashboard
-.PHONY: report
-report: dashboard
-	@echo "✔ Dashboard launched (via report)."
+	@echo "✔ Dashboard launched (full pipeline complete)."
 
 
 # ============================================================
@@ -101,12 +102,12 @@ $(COLOR_PLOT): dashboard/color_plot.py $(COLOR_TXT)
 # ============================================================
 # OBJECT PIPELINE
 # ============================================================
-/
-$(OBJECT_TXT):
-	@echo "Missing object file: $@  (expected from $(@:object.txt=.png))"
+
+# Safe pattern rule: if foo.object.txt is missing but foo.png exists → error
+%.object.txt: %.png
+	@echo "ERROR: Missing object file: $@ (expected from $<)"
 	@echo "Every .png must have a matching object.txt"
 	@exit 1
-
 
 .PHONY: objects
 objects: $(OBJECT_TXT)
@@ -116,10 +117,8 @@ objects: $(OBJECT_TXT)
 
 
 # ============================================================
-# RANDOM EMBEDDINGS PIPELINE (NEW)
+# RANDOM EMBEDDINGS PIPELINE
 # ============================================================
-
-RANDOM_EMBED_PLOT := dashboard/random_embedding_plot_output.html
 
 $(RANDOM_EMBED_PLOT): dashboard/random_embedding_plot.py $(VECTOR_OBJECT_FILES)
 	@echo "Generating random embeddings plot..."
@@ -134,11 +133,9 @@ random-embeddings: $(RANDOM_EMBED_PLOT)
 # VECTOR + EMBEDDING PIPELINE
 # ============================================================
 
-# Embedding plot must depend on all vectors_object_instances.txt files
 $(EMBED_PLOT): dashboard/embedding_plot.py $(VECTOR_OBJECT_FILES)
 	@echo "Generating embedding plot..."
 	python3 dashboard/embedding_plot.py
-
 
 .PHONY: embeddings
 embeddings: $(EMBED_PLOT)
@@ -165,8 +162,8 @@ clean:
 
 	@echo "Removing color + embedding HTML..."
 	@rm -f dashboard/color_plot_output.html
-	@find dashboard -type f -name "*_embedding.html" -delete
 	@rm -f dashboard/random_embedding_plot_output.html
+	@find dashboard -type f -name "*_embedding.html" -delete
 
 	@echo "✔ Clean complete."
 
@@ -180,7 +177,7 @@ help:
 	@echo ""
 	@echo "Available targets:"
 	@echo "  all                Full pipeline + dashboard"
-	@echo "  dashboard          Launch dashboard"
+	@echo "  dashboard          Launch dashboard (same as all)"
 	@echo "  report             Same as 'dashboard'"
 	@echo "  colors             Rebuild color data"
 	@echo "  colors-plot        Generate 3D Plotly colors figure"
