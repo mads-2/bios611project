@@ -50,7 +50,7 @@ def run_tsne(vectors):
         n_components=3,
         perplexity=30,
         learning_rate=300,
-        n_iter=1000,
+        max_iter=1000,
         init="pca",
         method="exact",
         verbose=1,
