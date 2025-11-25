@@ -63,7 +63,7 @@ This will:
 After the pipeline completes, open:
 
 ```
-http://localhost:8181
+http://localhost:8181/dashboard/prototype/prototype.html
 ```
 
 ---
