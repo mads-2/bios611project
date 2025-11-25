@@ -1,0 +1,57 @@
+Class,Object,Score_(sum_of_class_+_synonyms),Instances_(sum_of_class_+_synonyms),Synonyms
+Art,(class_total),1.087,2,
+,Performing_Arts,0.55,1,
+,Modern_Art,0.537,1,
+Design,(class_total),20.069,31,
+,Graphic_Design,17.351,27,
+,Animation,2.718,4,Animated Cartoon
+Interior_Design,(class_total),19.996,22,
+,Interior_Design,4.671,5,
+,Ceiling,4.622,5,
+,Floor,5.65,6,Flooring
+,Hall,1.233,2,
+,Light_Fixture,1.23,2,
+,Lobby,0.567,1,
+Material,(class_total),1.818,3,
+,Tile,1.218,2,
+,Plastic,0.6,1,
+Media,(class_total),0.749,1,
+,Advertising,0.749,1,
+Food,(class_total),5.592,6,
+,Fruit,0.976,1,
+,Produce,1.836,2,Natural Foods
+,Apple,1.36,2,Apples
+,Citrus,0.552,1,
+,Seedless_Fruit,0.535,1,
+Nature,(class_total),1.465,2,
+,Petal,0.895,1,
+,Daisy_Family,0.57,1,
+Heat,(class_total),4.154,7,
+,Heat,2.473,4,
+,Lens_Flare,1.681,3,
+Home,(class_total),0.571,1,
+,Home_Appliance,0.571,1,
+Numbers,(class_total),0.8,1,
+,Number,0.8,1,
+Shape,(class_total),1.376,2,
+,Sphere,0.862,1,
+,Triangle,0.514,1,
+Sun,(class_total),1.693,3,
+,Sun,1.066,2,Sunrise
+,Astronomical_Object,0.626,1,
+Tech,(class_total),61.715,67,
+,Technology,10.365,12,
+,Electronic_Device,17.128,19,Gadget Electronics Display_Device Machine Computer_Hardware Input_Device
+,Software,3.061,4,Computer_Program Multimedia_Software
+,Wire,2.099,3,Electrical_Cable
+,Communication_Device,8.292,9,Telephony Mobile_Phone Portable_Communications_Device Mobile_Device Telephone
+,Watch,1.437,2,
+,Office_Equipment,0.871,1,
+,Personal_Computer,0.784,1,
+,Operating_System,0.763,1,
+,Multimedia,0.751,1,
+,Icon,0.663,1,
+,Measuring_Instrument,0.655,1,
+,Portable_Electronic_Game,0.565,1,
+,Clock,0.532,1,
+,Cd_Player,0.515,1,

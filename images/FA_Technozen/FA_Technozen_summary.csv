@@ -1,0 +1,118 @@
+Class,Object,Score_(sum_of_class_+_synonyms),Instances_(sum_of_class_+_synonyms),Synonyms
+Art,(class_total),3.029,4,
+,Graphic_Design,2.922,5,
+,Floral_Design,0.607,1,
+,3d_Modeling,0.503,1,
+City,(class_total),11.261,17,
+,Hotel,2.422,4,
+,Restaurant,2.228,3,
+,Apartment,1.816,2,
+,Villa,0.634,1,
+,Cafeteria,0.612,1,
+,Courtyard,0.545,1,
+,Walkway,0.506,1,
+,Headquarters,2.486,4,Corporate_Headquarters
+Design,(class_total),2.217,3,
+,Animation,2.217,3,
+Fitness,(class_total),2.827,4,
+,Exercise,1.654,2,Physical_Fitness
+,Yoga,0.649,1,
+,Training,0.524,1,
+Home,(class_total),50.49,60,
+,Furniture,15.416,16,
+,Chair,10.667,14,Office_Chair Armrest
+,Daybed,4.361,6,
+,Table,4.652,5,Coffee_Table
+,Couch,4.177,5,Sofa_Bed
+,Home,1.868,2,
+,Home_Appliance,2.787,3,Major_Appliance Kitchen_Appliance
+,Mat,0.885,1,
+,Carpet,1.646,2,Rug
+,Vase,0.679,1,
+,Yard,0.639,1,
+,Landscaping,0.638,1,
+,Backyard,0.592,1,
+Interior_Design,(class_total),109.692,123,
+,Interior_Design,18.193,19,
+,Floor,35.286,38,Flooring Laminate_Flooring
+,Ceiling,8.82,10,
+,Living_Room,8.494,10,
+,Room,7.94,9,
+,Lighting,4.644,5,Light_Fixture
+,Wood_Flooring,4.393,5,
+,Shelf,5.757,6,Shelving
+,Flowerpot,1.653,2,
+,Stairs,1.481,2,
+,Wallpaper,1.461,2,
+,Tile,1.383,2,
+,Hall,1.295,2,
+,Bookcase,0.991,1,
+,Wall,0.975,1,
+,Handrail,0.92,1,
+,Lobby,0.907,1,
+,Library,0.887,1,
+,Cabinetry,0.866,1,
+,Plumbing_Fixture,0.751,1,Plumbing
+,Bathtub,0.712,1,
+,Baluster,0.7,1,
+,Bathroom,0.613,1,
+Lighting,(class_total),1.393,2,
+,Shade,1.393,2,
+Material,(class_total),19.915,26,
+,Wood,11.768,15,Wood_Stain Hardwood Varnish
+,Glass,3.309,4,
+,Metal,2.782,4,Iron Steel Aluminium
+,Natural_Material,0.737,1,
+,Building_Material,0.661,1,
+,Plastic,0.658,1,
+Media,(class_total),0.671,1,
+,Advertising,0.671,1,
+Medicine,(class_total),1.842,3,
+,Clinic,0.783,1,
+,Medical,0.544,1,
+,Waiting_Room,0.515,1,
+Nature,(class_total),11.282,16,
+,Houseplant,3.58,5,
+,Grass,2.484,3,Artificial_Turf
+,Woody_Plant,0.806,1,
+,Lawn,0.774,1,
+,Bamboo,0.541,1,
+,Sedges,0.513,1,
+,Daylighting,0.684,2,Sunlight
+,Evergreen,0.636,1,Tree
+,Aloes,0.581,1,Plant
+Object,(class_total),0.965,1,
+,Book,0.965,1,
+Office,(class_total),5.062,6,
+,Office_Equipment,2.739,3,
+,Office_Supplies,1.441,2,
+,Desk,0.882,1,
+Person,(class_total),1.651,3,
+,Human_Back,0.568,1,
+,Foot,0.56,1,
+,Hip,0.523,1,
+Science,(class_total),2.01,3,
+,Science,1.064,2,
+,Publication,0.946,1,
+Shape,(class_total),0.643,1,
+,Box,0.643,1,
+Sports,(class_total),8.083,10,
+,Tennis_Court,0.896,1,
+,Sports,1.664,2,Individual_Sport
+,Tennis,3.395,4,Tennis_Equipment_And_Supplies Soft_Tennis Racquet_Sport
+,Sports_Venue,0.723,1,
+,Racketlon,0.711,1,
+,Net_Sport,0.694,1,
+Tech,(class_total),66.576,84,
+,Electronic_Device,9.468,10,Display_Device Gadget Electronics Input_Device Peripheral Flat-Panel_Display
+,Technology,5.988,7,
+,Computer,4.022,6,Personal_Computer Laptop
+,Video_Games,10.035,11,Handheld_Game_Console Video_Game_Console Nintendo_Ds Portable_Electronic_Game Game Pc_Game Nintendo_3ds Wii Game_Controller
+,Software,0.567,1,
+,Space_Bar,0.605,1,
+Transport,(class_total),12.59,15,
+,Mode_Of_Transport,0.979,1,
+,Car,4.959,6,Car_Door Scion Fender Bumper Hubcap
+,Public_Transport,2.27,3,Train Rapid_Transit Rail_Transport
+,Automotive_Wheel_System,0.867,1,Alloy_Wheel Spoke
+,Wheel,0.867,1,

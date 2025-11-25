@@ -1,0 +1,73 @@
+Class,Object,Score_(sum_of_class_+_synonyms),Instances_(sum_of_class_+_synonyms),Synonyms
+City,(class_total),10.211,12,
+,Metropolis,1.692,2,
+,High-Rise_Building,3.389,4,Skyscraper
+,Tower,1.618,2,
+,Commercial_Building,0.866,1,
+,City,2.66,3,Metropolitan_Area Cityscape Skyline
+Science,(class_total),11.058,16,
+,Science,5.089,9,
+,Bubble,0.756,1,
+,Vortex,0.585,1,
+,Publication,0.569,1,
+,Marine_Biology,0.614,1,
+,Solvent_In_Chemical_Reactions,0.56,1,
+,Medical,0.632,1,
+,Analgesic,0.628,1,
+Design,(class_total),28.041,44,
+,Graphic_Design,20.017,30,
+,Fractal_Art,7.595,12,
+,Animation,1.429,2,
+Lighting,(class_total),5.973,10,
+,Lens_Flare,3.739,6,
+,Laser,1.162,2,
+,Visual_Effect_Lighting,1.072,2,
+Material,(class_total),1.417,2,
+,Glass,0.74,1,
+,Plastic,0.677,1,
+Nature,(class_total),0.976,1,
+,Nature,0.976,1,
+Night,(class_total),11.931,16,
+,Night,10.251,14,Darkness Midnight
+Neon,(class_total),2.677,4,
+,Neon,2.677,4,
+Object,(class_total),1.904,3,
+,Dishware,0.669,1,
+,Serveware,0.633,1,
+,Mask,0.602,1,
+Person,(class_total),1.428,2,
+,Fictional_Character,1.428,2,
+Shape,(class_total),4.724,7,
+,Sphere,4.724,7,
+Space,(class_total),15.799,19,
+,Astronomical_Object,4.095,5,
+,Planet,2.509,3,
+,Moon,2.847,3,Full_Moon Moonlight
+,Star,0.926,1,
+,Globe,1.438,2,
+,Constellation,0.596,1,
+,Earth,0.779,1,
+,Celestial_Event,0.857,1,
+,Aurora,0.525,1,
+Food,(class_total),2.403,3,
+,Produce,1.61,2,Natural_Foods
+,Apple,1.366,2,Granny_Smith
+,Food,0.739,1,
+Tech,(class_total),95.195,108,
+,Technology,21.582,25,
+,Electronic_Device,13.923,15,Gadget Electronics Display_Device Peripheral Input_Device
+,Software,12.35,17,Multimedia_Software Computer_Program
+,Video_Game_Software,4.784,7,Game_Controller Joystick Game
+,Computer,5.06,7,Personal_Computer
+,Audio_Equipment,0.984,1,
+,Compact_Disc,0.599,1,
+,Remote_Control,0.839,1,
+,Headphones,0.922,1,
+,Headset,0.814,1,
+,Watch,1.437,2,
+,Wire,2.099,3,Electrical_Cable
+,Communication_Device,6.748,8,Telephony Mobile_Phone Portable_Communications_Device Feature_Phone Mobile_Device Telephone
+,Operating_System,5.567,8,
+,Icon,1.257,2,
+,Measuring_Instrument,0.655,1,
+,Loudspeaker,0.761,1,
