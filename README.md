@@ -32,7 +32,7 @@ docker build . -t aero
 docker run --rm     -e PASSWORD=mysecret     -p 8181:8181     -p 8787:8787     -v "$(pwd)":/home/rstudio/project     aero
 ```
 
-- RStudio: http://localhost:8787  
+- RStudio: http://localhost:8997  
   username: `rstudio`, password: `mysecret`
 
 ---
