@@ -96,7 +96,6 @@ dashboard/*.log
 # ----------------------------
 # Misc project outputs
 # ----------------------------
-*.csv
 *.tsv
 *.rds
 *.feather
