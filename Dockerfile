@@ -65,23 +65,3 @@ RUN echo '\nif (interactive()) { p <- "/home/rstudio/project"; if (dir.exists(p)
 RUN echo 'cd /home/rstudio/project' >> /home/rstudio/.bashrc \
  && chown rstudio:rstudio /home/rstudio/.bashrc
 
-
-
-# ------------------------------------------------------------
-# Usage
-# ------------------------------------------------------------
-# Build the image (single unified tag):
-#   docker build -t aero .
-#
-# Run RStudio:
-#   docker run --rm -e PASSWORD=mysecret -p 8997:8787 \
-#     -v "$(pwd)":/home/rstudio/project aero
-#
-# Access RStudio:
-#   → http://localhost:8997
-#   → user: rstudio | pass: mysecret
-#
-# Later, you can add detect_objects.py manually and run:
-#   python detect_objects.py images/my_image.jpg
-# ------------------------------------------------------------
-
