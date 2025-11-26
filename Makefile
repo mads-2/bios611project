@@ -21,35 +21,46 @@ endif
 # PNG → <image>object.txt
 OBJECT_TXT := $(PNG_FILES:.png=object.txt)
 
-# Per-image extracted color files (e.g., 91color.txt)
-NUMBERED_COLOR_TXT := $(wildcard images/FA_*/*color.txt)
-
-# Per-folder aggregated colors
-COLOR_TXT := $(wildcard images/FA_*/colors.txt)
-
 # Per-folder object_instances.txt
 OBJECT_INSTANCES := $(patsubst images/FA_%/,images/FA_%/object_instances.txt,$(dir $(OBJECT_TXT)))
 
-# Any vectors file for embeddings
+# Vectors used for embeddings
 VECTOR_OBJECT_FILES := $(shell find images/FA_* -type f -name "vectors_object_instances.txt")
 
-# Outputs
+# Color plot output
 COLOR_PLOT := dashboard/color_plot_output.html
-EMBED_PLOT := dashboard/embedding_plot_output.html
-RANDOM_EMBED_PLOT := dashboard/random_embedding_plot_output.html
+
+# Deterministic embedding outputs
+EMBED_PLOTS := \
+	dashboard/D_embedding.html \
+	dashboard/FA_embedding.html \
+	dashboard/FM_embedding.html \
+	dashboard/FE_embedding.html \
+	dashboard/T_embedding.html \
+	dashboard/DA_embedding.html
+
+# Random embedding outputs
+RANDOM_EMBED_PLOTS := \
+	dashboard/r_D_embedding.html \
+	dashboard/r_FA_embedding.html \
+	dashboard/r_FM_embedding.html \
+	dashboard/r_FE_embedding.html \
+	dashboard/r_T_embedding.html \
+	dashboard/r_DA_embedding.html
 
 
 # ============================================================
 # HIGH-LEVEL TARGETS
 # ============================================================
 
-.PHONY: all report dashboard build-dashboard build run stop clean help
+.PHONY: all report dashboard build run stop clean help
 
 all: build-dashboard
 report: build-dashboard
 dashboard: build-dashboard
 
-build-dashboard: $(COLOR_PLOT) $(EMBED_PLOT) $(RANDOM_EMBED_PLOT)
+# Must NOT be PHONY → depends on REAL outputs
+build-dashboard: $(COLOR_PLOT) $(EMBED_PLOTS) $(RANDOM_EMBED_PLOTS)
 	cd dashboard && ./run_dashboard.sh
 	@echo "✔ Dashboard launched."
 
@@ -93,6 +104,7 @@ $(COLOR_TXT): $(PNG_FILES) colors/extract_all_FA.R colors/aggregate_FA_colors.R
 
 colors: $(COLOR_TXT)
 
+
 # ============================================================
 # COLORS PLOT (REAL TARGET)
 # ============================================================
@@ -124,27 +136,27 @@ objects: $(OBJECT_INSTANCES)
 
 
 # ============================================================
-# RANDOM EMBEDDINGS (REAL TARGET)
+# EMBEDDINGS (DETERMINISTIC)
 # ============================================================
 
-$(RANDOM_EMBED_PLOT): dashboard/random_embedding_plot.py $(VECTOR_OBJECT_FILES)
-	@echo "Generating random embeddings plot..."
-	python3 dashboard/random_embedding_plot.py
-	@echo "✔ Random embeddings plot generated."
-
-random-embeddings: $(RANDOM_EMBED_PLOT)
-
-
-# ============================================================
-# EMBEDDINGS (REAL TARGET)
-# ============================================================
-
-$(EMBED_PLOT): dashboard/embedding_plot.py $(VECTOR_OBJECT_FILES)
-	@echo "Generating embedding plot..."
+$(EMBED_PLOTS): dashboard/embedding_plot.py $(VECTOR_OBJECT_FILES)
+	@echo "Generating deterministic embedding plots..."
 	python3 dashboard/embedding_plot.py
-	@echo "✔ Embedding plot generated."
+	@echo "✔ All deterministic embedding plots generated."
 
-embeddings: $(EMBED_PLOT)
+embeddings: $(EMBED_PLOTS)
+
+
+# ============================================================
+# RANDOM EMBEDDINGS
+# ============================================================
+
+$(RANDOM_EMBED_PLOTS): dashboard/random_embedding_plot.py $(VECTOR_OBJECT_FILES)
+	@echo "Generating random embedding plots..."
+	python3 dashboard/random_embedding_plot.py
+	@echo "✔ All randomized embedding plots generated."
+
+random-embeddings: $(RANDOM_EMBED_PLOTS)
 
 
 # ============================================================
@@ -169,11 +181,7 @@ clean:
 
 	@echo "Removing dashboard HTML outputs..."
 	@rm -f dashboard/color_plot_output.html
-	@rm -f dashboard/random_embedding_plot_output.html
-	@rm -f dashboard/embedding_plot_output.html
-	@find dashboard -type f -name "*_embedding.html" -delete
-	@find dashboard -type f -name "r_*_embedding.html" -delete
-
+	@rm -f dashboard/*.html
 	@echo "✔ Clean complete."
 
 
@@ -189,8 +197,8 @@ help:
 	@echo "  colors             Generate color data"
 	@echo "  colors-plot        Generate 3D color plot"
 	@echo "  objects            Aggregate object labels"
-	@echo "  embeddings         Generate embedding plot"
-	@echo "  random-embeddings  Generate random embedding plot"
+	@echo "  embeddings         Generate deterministic embedding plots"
+	@echo "  random-embeddings  Generate randomized embedding plots"
 	@echo "  clean              Remove pipeline-generated artifacts"
 	@echo "  build              Build Docker environment"
 	@echo "  run                Start RStudio + dashboard"
