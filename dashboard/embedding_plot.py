@@ -309,7 +309,8 @@ def generate_plot(aesthetic, output_filename):
             <b>Important:</b> These points represent semantic embeddings generated using
             Google Vertex AI’s <code>text-embedding-005</code> model.<br>
             Labels come directly from Google Cloud Vision and are not hand-curated.<br>
-            Deterministic t-SNE settings ensure reproducible layouts on every run.
+            Deterministic t-SNE settings ensure reproducible layouts on every run.<br>
+            Words with related meaning that also appear near one another in this 3D space are marked with colored connecting lines.<br>
         </div>
     """
 
