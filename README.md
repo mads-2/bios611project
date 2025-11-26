@@ -66,6 +66,11 @@ http://localhost:8181/dashboard/prototype/prototype.html
 # For Developers  
 ## (Adding New Data, Using Vision/Vertex AI Tools, Extending the Pipeline)
 
+# IDEAS FOR IMPROVEMENT OF THIS PROJECT:
+
+- Create classifier that can detect which subtype of Frutiger Aero and image most closely aligns with
+- Create a binary classifier that can tell you if an image is Frutiger Aero (including subtypes) or not
+
 This section provides detailed instructions for adding images, generating objects, embeddings, and understanding the project workflow.
 
 ---
